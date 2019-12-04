@@ -1,16 +1,20 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
 const logger = require('../common/tools/logger');
-const { botcoreService } = require('./service/botcoreService');
 
-const port = 8082;
-const server = 'Mazars Botcore';
+const port = 80;
+const server = 'Mazars connectors';
 
 app.use(bodyParser.json({ limit: '50mb' }));
 
-app.post('/botcore', (req, res) => {
+app.post('/connectors/teams', (req, res) => {
     logger.info('Botcore has been called !');
-    botcoreService(req, res);
+    // connectorTeams(req, res);
+});
+
+app.post('/connectors/skype', (req, res) => {
+    logger.info('Botcore has been called !');
+    // connectorSkype(req, res);
 });
 
 app.listen(port, () => {

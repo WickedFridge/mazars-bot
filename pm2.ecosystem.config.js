@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: 'ice-creamator-botcore',
+            name: 'mazars-botcore',
             script: 'botcore/index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
@@ -10,7 +10,7 @@ module.exports = {
             },
         },
         {
-            name: 'ice-creamator-nlu',
+            name: 'mazars-nlu',
             script: 'nlu/index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
@@ -19,7 +19,7 @@ module.exports = {
             },
         },
         {
-            name: 'ice-creamator-lms',
+            name: 'mazars-lms',
             script: 'lms/index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
@@ -28,8 +28,8 @@ module.exports = {
             },
         },
         {
-            name: 'ice-creamator-fridge-api',
-            script: 'fridge-api/index.js',
+            name: 'mazars-connectors',
+            script: 'connectors/index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
                 watch: true,
