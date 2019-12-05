@@ -2,7 +2,8 @@ module.exports = {
     apps: [
         {
             name: 'mazars-botcore',
-            script: 'botcore/index.js',
+            cwd: 'botcore',
+            script: 'index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
                 watch: true,
@@ -11,7 +12,8 @@ module.exports = {
         },
         {
             name: 'mazars-nlu',
-            script: 'nlu/index.js',
+            cwd: 'nlu',
+            script: 'index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
                 watch: true,
@@ -20,7 +22,8 @@ module.exports = {
         },
         {
             name: 'mazars-lms',
-            script: 'lms/index.js',
+            cwd: 'lms',
+            script: 'index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
                 watch: true,
@@ -29,7 +32,8 @@ module.exports = {
         },
         {
             name: 'mazars-connectors',
-            script: 'connectors/index.js',
+            cwd: 'connectors',
+            script: 'index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {
                 watch: true,

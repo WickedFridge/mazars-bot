@@ -1,16 +1,18 @@
 #! /bin/bash
 
-PROJECT_NAME="ice-creamator"
+PROJECT_NAME="mazars-bot"
 PM2CONF_FILE="pm2.ecosystem.config.js"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
-DIRECTORIES=(botcore lms nlu fridge-api common)
+DIRECTORIES=(botcore lms nlu connectors common)
 
 # install pm2 if not already installed
 if [[ `npm list -g | grep -c pm2` -eq 0 ]]; then
     npm install -g pm2
+else
+    pm2 delete all
 fi
 
 for dir in ${DIRECTORIES[*]}; do

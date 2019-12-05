@@ -62,3 +62,9 @@ typings/
 
 # webstorm files
 .idea
+
+.DS_Store
+.swagger-codegen
+test-report.html
+junit.xml
+data/*

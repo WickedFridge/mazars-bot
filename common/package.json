@@ -2,6 +2,10 @@
   "name": "common",
   "version": "1.0.0",
   "dependencies": {
-    "winston": "^3.2.1"
+    "@slack/client": "^5.0.2",
+    "config": "^3.2.4",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.3.0",
+    "winston-transport": "^4.3.0"
   }
 }

@@ -1,22 +1,14 @@
+const config = require('config');
 const app = require('express')();
 const bodyParser = require('body-parser');
-const logger = require('../common/tools/logger');
 
-const port = 80;
-const server = 'Mazars connectors';
+const { configureServer } = require('../common/components/serverFactory');
 
 app.use(bodyParser.json({ limit: '50mb' }));
 
-app.post('/connectors/teams', (req, res) => {
-    logger.info('Botcore has been called !');
-    // connectorTeams(req, res);
-});
+const services = {
+    [config.endpoints.teams]: () => {},
+    [config.endpoints.skype]: () => {},
+};
 
-app.post('/connectors/skype', (req, res) => {
-    logger.info('Botcore has been called !');
-    // connectorSkype(req, res);
-});
-
-app.listen(port, () => {
-    logger.info(`Starting "${server}" listening on port ${port}`);
-});
+configureServer(app, config, services);

@@ -1,18 +1,14 @@
+const config = require('config');
 const app = require('express')();
 const bodyParser = require('body-parser');
-const logger = require('./tools/logger');
-const { nluService } = require('./service/nlu');
 
-const port = 8081;
-const server = 'BBL NLU';
+const { nluService } = require('./service/nlu');
+const { configureServer } = require('../common/components/serverFactory');
 
 app.use(bodyParser.json({ limit: '50mb' }));
 
-app.post('/nlu', (req, res) => {
-    logger.info('Nlu has been called !');
-    nluService(req, res);
-});
+const services = {
+    [config.endpoints.nlu]: nluService,
+};
 
-app.listen(port, () => {
-    logger.info(`Starting "${server}" listening on port ${port}`);
-});
+configureServer(app, config, services);

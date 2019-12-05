@@ -1,10 +1,15 @@
 module.exports = {
-    lms : {
+    name: 'botcore',
+    endpoints: {
+        botcore: '/botcore',
+    },
+    port: 8082,
+    lms: {
         url: 'http://localhost',
         port: '8080',
         endpoint: '/lms',
     },
-    nlu : {
+    nlu: {
         url: 'http://localhost',
         port: '8081',
         endpoint: '/nlu',

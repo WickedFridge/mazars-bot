@@ -1,5 +1,9 @@
 const axios = require('axios');
-const logger = require('../../common/tools/logger');
+const config = require('config');
+const { customLogger, initLogger } = require('../../common/logger');
+
+initLogger(config);
+const logger = customLogger(config.name);
 
 async function callAxios({ url, port, endpoint, method, data, headers }) {
     try {

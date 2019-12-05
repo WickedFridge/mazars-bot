@@ -8,4 +8,4 @@ const logger = winston.createLogger({
     transports: [new winston.transports.Console()],
 });
 
-module.exports = logger;
+module.exports = { logger };
