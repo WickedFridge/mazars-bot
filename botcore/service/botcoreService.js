@@ -12,10 +12,11 @@ async function botcoreService(req, res) {
 
     const { intent, entities } = await callNlu(text);
     logger.info('[nluResult] :');
-    logger.info(JSON.stringify({ intent, entities }, null, 2));
+    logger.info({ intent, entities });
 
     const result = await callLms(intent, entities);
     logger.info('[lmsResult] :', result);
+    logger.info(result);
 
     res.json(result);
 }
