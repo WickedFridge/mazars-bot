@@ -5,8 +5,8 @@ module.exports = {
         skype: '/skype',
     },
     microsoftApp: {
-        id: '8be1d41d-d3f1-450c-946c-76ecf9851aa9',
-        password: 'fmGpf2_u-3Tfg3hhJ:MxUDGlo8B=cKfa',
+        id: '785b2fde-652c-4786-98b2-292831dd6921',
+        password: 'EzRnpAZ-(zNPUml0%:/*ie;12',
     },
     port: 80,
 };
