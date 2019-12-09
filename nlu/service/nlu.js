@@ -1,4 +1,9 @@
-const logger = require('../tools/logger');
+const config = require('config');
+const { customLogger, initLogger } = require('../../common/logger');
+
+initLogger(config);
+
+const logger = customLogger('nlu');
 
 function getEntity(text, regex) {
     const match = text.toLowerCase().match(regex);

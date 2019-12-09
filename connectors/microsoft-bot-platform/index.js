@@ -1,7 +1,7 @@
 const config = require('config');
 const { BotFrameworkAdapter } = require('botbuilder');
 const { customLogger, initLogger } = require('../../common/logger');
-const { EchoBot } = require('./bot');
+const { Bot } = require('./bot');
 
 initLogger(config);
 
@@ -33,18 +33,15 @@ adapter.onTurnError = async (context, error) => {
 };
 
 // Create the main dialog.
-const myBot = new EchoBot();
+const myBot = new Bot();
 
-function connectorTeams(req, res) {
-    logger.info('coucou 0');
+function connectorMicrosoft(req, res) {
     adapter.processActivity(req, res, async (context) => {
         // Route to main dialog.
-        logger.info('coucou 1');
         await myBot.run(context);
-        logger.info('coucou 2');
     });
 }
 
 module.exports = {
-    connectorTeams,
+    connectorMicrosoft,
 };
