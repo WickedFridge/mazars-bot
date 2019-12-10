@@ -17,3 +17,11 @@ bash start.sh
 	}
 }
 ```
+
+### Loading your NLU Credentials
+
+* Google Cloud Platform
+* "Comptes et Service"
+* Dialogflow Integrations
+* create a key
+* put the key into the conf file

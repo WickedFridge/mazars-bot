@@ -1,7 +1,7 @@
 const config = require('config');
 const { customLogger, initLogger } = require('../../common/logger');
 const { getDeepValue } = require('../../common/tools/objectHelper');
-const { lms, fallback } = require('../database/lmsDatabase');
+const { database } = require('../database/lmsDatabase');
 
 initLogger(config);
 const logger = customLogger(config.name);
@@ -38,29 +38,29 @@ function getEntitiesScore(lmsEntities, reqEntities) {
 
 function getSortedResults(array, entities) {
     return array.map((e) => {
-        e.match = getEntitiesScore(e.entities, entities);
+        e.match = e.entities ? getEntitiesScore(e.entities, entities) : 0.5;
         return e;
     }).sort((e1, e2) => e1.match < e2.match);
 }
 
 function getOutputText(intent, entities) {
     let output = 'default text';
-    const resultsMatchingIntent = lms.filter(elem => elem.intent === intent);
+    const resultsMatchingIntent = database[intent] || database.DEFAULT_FALLBACK;
     const sortedResults = getSortedResults(resultsMatchingIntent, entities);
     logger.info(`results matching intent : ${JSON.stringify(sortedResults, null, 2)}`);
     if (sortedResults.length > 0) {
-        output = sortedResults[0].output;
+        output = sortedResults[0].value;
     } else {
-        const index = Math.round(Math.random() * fallback.length);
-        output = fallback[index];
+        output = database.DEFAULT_FALLBACK.value;
     }
+
     return output;
 }
 
 function parse(req, res) {
-    const { intent, entities } = req.body;
+    const { intent, entities, response } = req.body;
     logger.info(`intent: ${intent}`);
-    const output = getOutputText(intent, entities);
+    const output = response || getOutputText(intent, entities);
     logger.info(`output: ${output}`);
     res.json({ output });
 }
