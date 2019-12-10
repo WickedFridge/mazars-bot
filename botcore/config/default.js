@@ -4,19 +4,12 @@ module.exports = {
         botcore: '/botcore',
     },
     port: 8082,
-    lms: {
-        url: 'http://localhost',
-        port: '8080',
-        endpoint: '/lms',
-    },
-    nlu: {
-        url: 'http://localhost',
-        port: '8081',
-        endpoint: '/nlu',
-    },
-    fridgeApi: {
-        url: 'http://localhost',
-        port: '8083',
-        endpoint: '/flavour',
+    apiClients: {
+        lms: {
+            baseURL: 'http://localhost:8080',
+        },
+        nlu: {
+            baseURL: 'http://localhost:8081',
+        },
     },
 };

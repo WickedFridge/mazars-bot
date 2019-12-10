@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mazars-bot-dev-cw-aoeuwx",
+  "private_key_id": "ec4e45495cb5b09e5408c5dd273494dbc0cd5380",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC5LzcdOVLeWaKF\n5Nu1nUHTo6ImJvZYvrF3WoaVRnYZxJqmJlw889o4Cw+Wirw1d2L/X9sIEu9xMv6M\nkU1Hn1gTPWKIt52pjj5bmfcCeTZ8ShUyyKUGTgcPD3aWvPyX0q+kp9n0RMhlf9iU\nNLFnpqMTXusglE0ZMKxtZ0bctPb+AzABwU3P48WzkdOl9djNOwXpzHN8evCtvSyd\n1t71Bz9ykRxHH0PI7lwBghJTzDTjAjRYfZ1weTcpdvjZwbcUgpphKrnkMVqrT3y0\nlqNUwVjuxueG6N0cadXB80zppo9xr30GrDuomccWWXBVfS0v+1FudbVfANQ8eh3a\nVUlFEiVzAgMBAAECggEALUP0yWBvOKmZV/g6mliftA9d/cxtUAEA2SdYGVn5WVAc\n6zsaNc33i9ZsT4SG/9y4Zqr0G7OhMr7fyNVlmfnBqiZJlRio4b7C0FpAriqZ3mSv\nbNPtvq5I/G3vs2XrqmLWCz36QUKk52aKNqPwr2DkoMIFYFfPxrYGl9F0WVOkwi7y\nlIzjMiy4WGb29yKDpIl7s4odilcV24fYNtZj5eXqgn8OmK4HRPBYp32stgkvOgDI\n5V5sRVVvtTQA2QDDwYtLeYefznYswkTj7aBH2qAxdBjzqGyM9WfDFUYDk33KkRgq\nRF9GuSXE8XOq5OibDWsZPddjRGWaj+roYT7M3KSV0QKBgQD91znAaA4TOSOSNN+l\nslnFEvp/SC6A3gPJq5mWj6LrHF24JAcZY8EVmPHstGIrOttpnayxpK8vxMCRDFCL\nujO2UI/2avOjeCqXyOhMjBnBDeQ7tNcZWqm9mYUgH9H3tp3emMVQ2l831Jg7BuLD\n24zhlFNKCpjdt2P+vZTeOthksQKBgQC6wnsXc841wZxo1Qd8MOxKwTOPypfo3K5f\nPGEdiBzRbPjQJUorYvQmspyPg6hfoQo+i8/xrDt5VRJ8BIySYduv3gZMk769JTsO\nWZFXuFychCLQGzmS8/k/t5cgoIwAD7jROxVQrLWwJjPY05fUylt1Hl6FMIxBYVq8\ntbTSkhfFYwKBgQDpMUV+upjjlARXlnc200egwjSZpYgDHvI/3IL2S/IRJzf5qC9V\nZczFuIHXQEdHC4Tx28YAVBgUPB3jonqEQoSrIgt/BvXX4NbQJeMyHyqxrb9UEmfg\nhOeWpGgmANV1SbByA8qQ4mvC8G0BHOxJnXIo8YgqZt3UIVuddDBEj66noQKBgQCT\n3Ub32oh5p0De/0td2J480ZqxTgXYKGEmpfd+GjY22cBljCCdGUuVF/U861Bz5lzm\nCGwrO+IavnBUIIXrn+7/3xm9p3xs5P1M7z1T5nPst/GYMvXyk5fUCtdszbAKnGgH\nwG+v4A452QVTtrOPlmey4siTS0zAtwPQRU1VKrYHYQKBgFoNx8UlGAbU7pgZxiFi\nhOdlO4DqoSs0ePh2Z9xKRh3kVsd/l7SbPJG0/hgfn5dnxxF6fDTe07x98bS1GD/a\nsW2ZL+th4SAxjDjnWYoTkfn/59IQxORAvOsyV8JpMjoM+0JRAfDb8n89vjff3Vga\n2W1W4zp9BUbma8hk9S5ZiiYn\n-----END PRIVATE KEY-----\n",
+  "client_email": "dialogflow-kxgthm@mazars-bot-dev-cw-aoeuwx.iam.gserviceaccount.com",
+  "client_id": "117020522238906656140",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-kxgthm%40mazars-bot-dev-cw-aoeuwx.iam.gserviceaccount.com"
+}
