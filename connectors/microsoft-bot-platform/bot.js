@@ -17,7 +17,8 @@ class Bot extends ActivityHandler {
         this.onMessage(async (context, next) => {
             const message = createMessage(context);
             const response = await botcoreApiClient.postMessage(message);
-            await context.sendActivity(`You said '${context.activity.text}' and response is ${response.output}`);
+            // await context.sendActivity(`You said '${context.activity.text}' and response is ${response.output}`);
+            await context.sendActivity(response.output);
             await next();
         });
 
@@ -25,7 +26,7 @@ class Bot extends ActivityHandler {
             const { membersAdded } = context.activity;
             for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
                 if (membersAdded[cnt].id !== context.activity.recipient.id) {
-                    await context.sendActivity('Hello and welcome!');
+                    await context.sendActivity('Bonjour et bienvenue!');
                 }
             }
             await next();

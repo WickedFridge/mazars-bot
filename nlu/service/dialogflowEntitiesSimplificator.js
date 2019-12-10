@@ -43,5 +43,4 @@ function simplifyEntities(rawEntities) {
 
 module.exports = {
     simplifyEntities,
-    extractField,
 };
