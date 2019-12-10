@@ -12,3 +12,5 @@ const services = {
 };
 
 configureServer(app, config, services);
+
+module.exports = app;

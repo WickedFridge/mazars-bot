@@ -36,18 +36,18 @@ async function nluService(req, res) {
 
     // Send request and log result
     const responses = await sessionClient.detectIntent(request);
-    logger.info('Detected intent');
+    logger.info('output');
     const result = responses[0].queryResult;
     const response = result.fulfillmentText;
     const intent = result.intent.displayName;
     const entities = simplifyEntities(result.parameters);
-
-    // logger.debug(result);
-    res.json({
+    const output = {
         intent,
         entities,
         response,
-    });
+    };
+    logger.info(output);
+    res.json(output);
 }
 
 module.exports = {

@@ -12,9 +12,11 @@ function configureServer(app, config, services) {
         });
     });
 
-    app.listen(config.port, () => {
-        logger.info(`Starting "${config.name}" listening on port ${config.port}`);
-    });
+    if (process.env.NODE_ENV !== `test`) {
+        app.listen(config.port, () => {
+            logger.info(`Starting "${config.name}" listening on port ${config.port}`);
+        });
+    }
 }
 
 module.exports = {
