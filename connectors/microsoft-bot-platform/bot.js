@@ -5,9 +5,21 @@ const { createClient } = require('../../common/api-client/botcore/factory');
 const botcoreApiClient = createClient(config.apiClients.botcore);
 
 function createMessage(context) {
+    const [firstname, lastname] = context.activity.from.name.split(' ');
     return {
-        locale: context.activity.locale,
-        text: context.activity.text,
+        beginTime: context.activity.timestamp,
+        messageId: context.activity.id,
+        inputText: context.activity.text,
+        conversation: {
+            locale: context.activity.locale,
+            connector: context.activity.channelId,
+        },
+        user: {
+            externalId: context.activity.from.id,
+            locale: context.activity.locale,
+            firstname,
+            lastname,
+        },
     };
 }
 
@@ -18,7 +30,7 @@ class Bot extends ActivityHandler {
             const message = createMessage(context);
             const response = await botcoreApiClient.postMessage(message);
             // await context.sendActivity(`You said '${context.activity.text}' and response is ${response.output}`);
-            await context.sendActivity(response.output);
+            await context.sendActivity(response.lmsResponse);
             await next();
         });
 

@@ -10,13 +10,11 @@ initLogger(config);
 const logger = customLogger('botcoreService');
 
 async function botcoreService(req, res) {
-    const { text } = req.body;
-    logger.info(`[input] : ${text}`);
+    const message = req.body;
+    const messageWithNlu = await nluApiClient.postAnalyze(message);
+    const messageWithLms = await lmsApiClient.postLMS(messageWithNlu);
 
-    const nluResponse = await nluApiClient.postAnalyze({ text });
-    const lmsResponse = await lmsApiClient.postLMS(nluResponse);
-
-    res.json(lmsResponse);
+    res.json(messageWithLms);
 }
 
 module.exports = {

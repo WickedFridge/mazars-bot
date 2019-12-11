@@ -63,11 +63,12 @@ function getOutputText(intent, entities) {
 
 async function parse(req, res) {
     await initLms();
-    const { intent, entities, response } = req.body;
+    const message = req.body;
+    const { intent, entities, response } = message.nlu;
     logger.info(`intent: ${intent}`);
-    const output = response || getOutputText(intent, entities);
-    logger.info(`output: ${output}`);
-    res.json({ output });
+    message.lmsResponse = response || getOutputText(intent, entities);
+    logger.info(`output: ${message.lmsResponse}`);
+    res.json(message);
 }
 
 module.exports = {

@@ -11,8 +11,8 @@ initLogger(config);
 const logger = customLogger('nlu');
 
 async function nluService(req, res) {
-    const { text } = req.body;
-    const sessionId = uuid.v4();
+    const message = req.body;
+    const sessionId = message.messageId;
 
     const sessionConfig = {
         projectId,
@@ -28,7 +28,7 @@ async function nluService(req, res) {
         session: sessionPath,
         queryInput: {
             text: {
-                text,
+                text: message.inputText,
                 languageCode: 'fr-FR',
             },
         },
@@ -41,13 +41,13 @@ async function nluService(req, res) {
     const response = result.fulfillmentText;
     const intent = result.intent.displayName;
     const entities = simplifyEntities(result.parameters);
-    const output = {
+    message.nlu = {
         intent,
         entities,
         response,
     };
-    logger.info(output);
-    res.json(output);
+    logger.info(message.nlu);
+    res.json(message);
 }
 
 module.exports = {

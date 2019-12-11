@@ -1,4 +1,5 @@
 const { customLogger, initLogger } = require('../logger');
+const { validateMessage } = require('../tools/validator');
 
 function configureServer(app, config, services) {
     initLogger(config);
@@ -6,9 +7,15 @@ function configureServer(app, config, services) {
 
     Object.entries(services).forEach(([endpoint, callback]) => {
         app.post(endpoint, (req, res) => {
+            const message = req.body;
             logger.debug(`[${config.name}] ${endpoint} called with parameters`);
-            logger.debug(req.body);
-            callback(req, res);
+            logger.debug(message);
+            if (!config.validateInput || validateMessage(message)) {
+                callback(req, res);
+            } else {
+                logger.error(`Message doesn't comply with schema`);
+                res.json(message)
+            }
         });
     });
 

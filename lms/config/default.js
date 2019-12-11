@@ -4,6 +4,7 @@ module.exports = {
         lms: '/lms',
     },
     port: 8080,
+    validateInput: true,
     firebase: {
         apiKey: 'AIzaSyChQkS6xJwii102Xv_vWrAeN4Ixtv99ycA',
         authDomain: 'lms-mazars-dev-cw.firebaseapp.com',
