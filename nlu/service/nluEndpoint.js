@@ -1,9 +1,9 @@
 const config = require('config');
 const dialogflow = require('dialogflow');
-const uuid = require('uuid');
 const { customLogger, initLogger } = require('../../common/logger');
 const { simplifyEntities } = require('./dialogflowEntitiesSimplificator');
 const credentials = require('./dialogflow-key-dev-cw');
+
 const projectId = credentials.project_id;
 
 initLogger(config);
@@ -11,8 +11,8 @@ initLogger(config);
 const logger = customLogger('nlu');
 
 async function nluService(req, res) {
-    const { text } = req.body;
-    const sessionId = uuid.v4();
+    const message = req.body;
+    const sessionId = message.messageId;
 
     const sessionConfig = {
         projectId,
@@ -28,7 +28,7 @@ async function nluService(req, res) {
         session: sessionPath,
         queryInput: {
             text: {
-                text,
+                text: message.inputText,
                 languageCode: 'fr-FR',
             },
         },
@@ -36,18 +36,19 @@ async function nluService(req, res) {
 
     // Send request and log result
     const responses = await sessionClient.detectIntent(request);
-    logger.info('Detected intent');
+    logger.info('output');
     const result = responses[0].queryResult;
     const response = result.fulfillmentText;
     const intent = result.intent.displayName;
     const entities = simplifyEntities(result.parameters);
-
-    // logger.debug(result);
-    res.json({
+    message.nlu = {
+        originalIntent: intent,
         intent,
         entities,
         response,
-    });
+    };
+    logger.info(message.nlu);
+    res.json(message);
 }
 
 module.exports = {

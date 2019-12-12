@@ -15,6 +15,4 @@ const database = {
     ],
 };
 
-module.exports = {
-    database,
-};
+module.exports = database;

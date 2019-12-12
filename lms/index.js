@@ -1,14 +1,13 @@
 const config = require('config');
-const app = require('express')();
-const bodyParser = require('body-parser');
-
-const { parse } = require('./service/parseEndPoint');
-const { configureServer } = require('../common/components/serverFactory');
-
-app.use(bodyParser.json({ limit: '50mb' }));
+const { createServer } = require('../common/components/serverFactory');
+const { lmsService } = require('./service/lmsEndPoint');
+const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.lms]: parse,
+    [config.endpoints.lms]: {
+        callback: lmsService,
+        errorHandler: defaultErrorHandler,
+    },
 };
 
-configureServer(app, config, services);
+module.exports = createServer(config, services);

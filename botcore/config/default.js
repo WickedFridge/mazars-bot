@@ -4,6 +4,7 @@ module.exports = {
         botcore: '/botcore',
     },
     port: 8082,
+    validateInput: true,
     apiClients: {
         lms: {
             baseURL: 'http://localhost:8080',
@@ -12,4 +13,5 @@ module.exports = {
             baseURL: 'http://localhost:8081',
         },
     },
+    skipsOnError: false,
 };

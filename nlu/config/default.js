@@ -4,4 +4,6 @@ module.exports = {
         nlu: '/nlu',
     },
     port: 8081,
+    validateInput: true,
+    skipsOnError: true,
 };

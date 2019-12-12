@@ -5,15 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --testPathPattern='unit.test.js'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
     "config": "^3.2.4",
-    "express": "^4.16.3",
-    "winston": "^3.0.0"
+    "firebase": "^7.5.2",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -22,6 +21,10 @@
     "eslint-plugin-jest": "^21.18.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "jest": "^22.4.3"
+    "jest": "^24.7.1",
+    "jest-html-reporter": "^2.4.2",
+    "jest-junit": "^6.3.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "supertest": "^4.0.2"
   }
 }

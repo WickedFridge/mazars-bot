@@ -5,7 +5,7 @@ const { Bot } = require('./bot');
 
 initLogger(config);
 
-const logger = customLogger('teamsConnector');
+const logger = customLogger('microsoftConnector');
 
 const adapter = new BotFrameworkAdapter({
     appId: config.microsoftApp.id,
@@ -17,14 +17,14 @@ adapter.onTurnError = async (context, error) => {
     // This check writes out errors to console log .vs. app insights.
     // NOTE: In production environment, you should consider logging this to Azure
     //       application insights.
-    logger.error(`\n [onTurnError] unhandled error:`);
+    logger.error('\n [onTurnError] unhandled error:');
     logger.error(error);
     // Send a trace activity, which will be displayed in Bot Framework Emulator
     await context.sendTraceActivity(
         'OnTurnError Trace',
-        `${ error }`,
+        `${error}`,
         'https://www.botframework.com/schemas/error',
-        'TurnError'
+        'TurnError',
     );
 
     // Send a message to the user

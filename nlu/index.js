@@ -1,14 +1,13 @@
 const config = require('config');
-const app = require('express')();
-const bodyParser = require('body-parser');
-
-const { nluService } = require('./service/nlu');
-const { configureServer } = require('../common/components/serverFactory');
-
-app.use(bodyParser.json({ limit: '50mb' }));
+const { createServer } = require('../common/components/serverFactory');
+const { nluService } = require('./service/nluEndpoint');
+const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.nlu]: nluService,
+    [config.endpoints.nlu]: {
+        callback: nluService,
+        errorHandler: defaultErrorHandler,
+    },
 };
 
-configureServer(app, config, services);
+module.exports = createServer(config, services);
