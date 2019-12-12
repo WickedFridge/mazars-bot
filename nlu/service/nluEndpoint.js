@@ -1,9 +1,9 @@
 const config = require('config');
 const dialogflow = require('dialogflow');
-const uuid = require('uuid');
 const { customLogger, initLogger } = require('../../common/logger');
 const { simplifyEntities } = require('./dialogflowEntitiesSimplificator');
 const credentials = require('./dialogflow-key-dev-cw');
+
 const projectId = credentials.project_id;
 
 initLogger(config);
@@ -42,6 +42,7 @@ async function nluService(req, res) {
     const intent = result.intent.displayName;
     const entities = simplifyEntities(result.parameters);
     message.nlu = {
+        originalIntent: intent,
         intent,
         entities,
         response,

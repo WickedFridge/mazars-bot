@@ -14,4 +14,5 @@ module.exports = {
         messagingSenderId: '744706211358',
         appId: '1:744706211358:web:85c89b61d74cb9ac51b80f',
     },
+    skipsOnError: false,
 };

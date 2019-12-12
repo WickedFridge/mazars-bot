@@ -5,4 +5,5 @@ module.exports = {
     },
     port: 8081,
     validateInput: true,
+    skipsOnError: true,
 };

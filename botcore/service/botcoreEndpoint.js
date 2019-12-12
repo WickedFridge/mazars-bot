@@ -7,16 +7,20 @@ const nluApiClient = createNluClient(config.apiClients.nlu);
 const lmsApiClient = createLmsClient(config.apiClients.lms);
 
 initLogger(config);
-const logger = customLogger('botcoreService');
 
-async function botcoreService(req, res) {
+async function botcoreEndpoint(req, res) {
     const message = req.body;
     const messageWithNlu = await nluApiClient.postAnalyze(message);
     const messageWithLms = await lmsApiClient.postLMS(messageWithNlu);
-
+    if (message.isError) {
+        message.lmsResponse = {
+            type: 'text',
+            value: 'Internal Error',
+        };
+    }
     res.json(messageWithLms);
 }
 
 module.exports = {
-    botcoreService,
+    botcoreService: botcoreEndpoint,
 };

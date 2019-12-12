@@ -3,6 +3,7 @@ module.exports = {
     endpoints: {
         microsoft: '/microsoft-bot-platform',
     },
+    port: 80,
     apiClients: {
         botcore: {
             baseURL: 'http://localhost:8082',
@@ -13,5 +14,5 @@ module.exports = {
         password: 'EzRnpAZ-(zNPUml0%:/*ie;12',
     },
     validateInput: false,
-    port: 80,
+    skipsOnError: false,
 };

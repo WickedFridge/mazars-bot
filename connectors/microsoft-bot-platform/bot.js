@@ -29,7 +29,6 @@ class Bot extends ActivityHandler {
         this.onMessage(async (context, next) => {
             const message = createMessage(context);
             const response = await botcoreApiClient.postMessage(message);
-            // await context.sendActivity(`You said '${context.activity.text}' and response is ${response.output}`);
             await context.sendActivity(response.lmsResponse);
             await next();
         });

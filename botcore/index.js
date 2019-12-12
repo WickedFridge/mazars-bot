@@ -1,14 +1,13 @@
 const config = require('config');
-const app = require('express')();
-const bodyParser = require('body-parser');
-
-const { botcoreService } = require('./service/botcoreService');
-const { configureServer } = require('../common/components/serverFactory');
-
-app.use(bodyParser.json({ limit: '50mb' }));
+const { createServer } = require('../common/components/serverFactory');
+const { botcoreService } = require('./service/botcoreEndpoint');
+const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.botcore]: botcoreService,
+    [config.endpoints.botcore]: {
+        callback: botcoreService,
+        errorHandler: defaultErrorHandler,
+    },
 };
 
-configureServer(app, config, services);
+module.exports = createServer(config, services);

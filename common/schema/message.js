@@ -71,6 +71,7 @@ module.exports = {
         nlu: { $ref: `#/definitions/nlu` },
         user: { $ref: `#/definitions/user` },
         lmsResponse: { $ref: `#/definitions/lmsResponse` },
+        error: { type: 'object' },
     },
     required: ['messageId', 'conversation']
 };

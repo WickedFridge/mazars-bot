@@ -1,14 +1,13 @@
 const config = require('config');
-const app = require('express')();
-const bodyParser = require('body-parser');
-
-const { configureServer } = require('../common/components/serverFactory');
+const { createServer } = require('../common/components/serverFactory');
 const { connectorMicrosoft } = require('./microsoft-bot-platform');
-
-app.use(bodyParser.json({ limit: '50mb' }));
+const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.microsoft]: connectorMicrosoft,
+    [config.endpoints.microsoft]: {
+        callback: connectorMicrosoft,
+        errorHandler: defaultErrorHandler,
+    },
 };
 
-configureServer(app, config, services);
+module.exports = createServer(config, services);

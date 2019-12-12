@@ -61,10 +61,14 @@ function getOutputText(intent, entities) {
     return output;
 }
 
-async function parse(req, res) {
+async function lmsService(req, res) {
     await initLms();
     const message = req.body;
-    const { intent, entities, response } = message.nlu;
+    const { nlu } = message;
+    if (message.isError) {
+        nlu.intent = 'CORE_ERROR';
+    }
+    const { intent, entities, response } = nlu;
     logger.info(`intent: ${intent}`);
     message.lmsResponse = response || getOutputText(intent, entities);
     logger.info(`output: ${message.lmsResponse}`);
@@ -72,5 +76,5 @@ async function parse(req, res) {
 }
 
 module.exports = {
-    parse,
+    lmsService,
 };
