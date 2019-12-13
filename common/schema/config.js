@@ -47,6 +47,18 @@ module.exports = {
                 password: { type: 'string'},
             },
         },
+        database: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+                host: { type: 'string' },
+                user: { type: 'string' },
+                password: { type: 'string' },
+                database: { type: 'string' },
+                multipleStatements: { type: 'boolean' },
+                charset: { type: 'string' },
+            }
+        }
     },
 
     properties: {
@@ -58,6 +70,7 @@ module.exports = {
         skipsOnError: { type: 'boolean' },
         firebase: { $ref: '#/definitions/firebase'},
         microsoftApp: { $ref: '#/definitions/microsoftApp' },
+        database: { $ref: '#/definitions/database' }
     },
 
     required : [

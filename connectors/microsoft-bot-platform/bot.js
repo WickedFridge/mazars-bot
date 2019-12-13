@@ -1,5 +1,6 @@
 const { ActivityHandler } = require('botbuilder');
 const config = require('config');
+const moment = require('moment');
 const { createClient } = require('../../common/api-client/botcore/factory');
 
 const botcoreApiClient = createClient(config.apiClients.botcore);
@@ -7,7 +8,7 @@ const botcoreApiClient = createClient(config.apiClients.botcore);
 function createMessage(context) {
     const [firstname, lastname] = context.activity.from.name.split(' ');
     return {
-        beginTime: context.activity.timestamp,
+        beginTime: moment(context.activity.timestamp).format('YYYY-MM-DD HH:mm:ss'),
         messageId: context.activity.id,
         inputText: context.activity.text,
         conversation: {
@@ -29,7 +30,7 @@ class Bot extends ActivityHandler {
         this.onMessage(async (context, next) => {
             const message = createMessage(context);
             const response = await botcoreApiClient.postMessage(message);
-            await context.sendActivity(response.lmsResponse);
+            await context.sendActivity(response.lmsResponse.text);
             await next();
         });
 

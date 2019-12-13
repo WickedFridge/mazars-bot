@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "create-schema": "node scripts/executeSQL.js scripts/schema.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "botbuilder": "^4.6.2",
     "config": "^3.2.4",
-    "moment": "^2.24.0",
-    "uuid": "^3.3.3"
+    "mysql": "^2.17.1",
+    "squel": "^5.13.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

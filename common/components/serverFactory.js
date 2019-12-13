@@ -43,7 +43,7 @@ function createServer(config, services) {
             } catch (e) {
                 logger.error('error catched');
                 logger.error(e);
-                errorHandler(res, res, e);
+                errorHandler(req, res, e);
             }
         });
     });
