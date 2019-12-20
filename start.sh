@@ -2,6 +2,7 @@
 
 PROJECT_NAME="mazars-bot"
 PM2CONF_FILE="pm2.ecosystem.config.js"
+PM2CONF_FILE_PROD="pm2.ecosystem.config.prod.js"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -10,7 +11,7 @@ DIRECTORIES=(botcore lms nlu connectors common)
 
 # install pm2 if not already installed
 if [[ `npm list -g | grep -c pm2` -eq 0 ]]; then
-    npm install -g pm2
+    sudo npm install -g pm2
 else
     pm2 delete all
 fi
@@ -32,8 +33,14 @@ if [[ $? -eq 0 ]]; then
   pm2 delete $PROJECT_NAME
 fi
 
-MODE="LOCAL"
-pm2 start $PM2CONF_FILE
+while true; do
+    read -p "Which env do you want to start (local/prod) ? " MODE
+    case $MODE in
+        local* ) pm2 start $PM2CONF_FILE; break;;
+        prod* ) pm2 start $PM2CONF_FILE_PROD; break;;
+        * ) echo "Please answer local or prod.";;
+    esac
+done
 
 printf "\n"
 echo -e "${GREEN}Starting the application in $MODE mode ${NC}"
