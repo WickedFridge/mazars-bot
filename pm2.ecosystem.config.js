@@ -9,6 +9,10 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
+            env_prod: {
+                watch: false,
+                NODE_ENV: 'prod',
+            },
         },
         {
             name: 'nlu',
@@ -18,6 +22,10 @@ module.exports = {
             env: {
                 watch: true,
                 NODE_ENV: 'local',
+            },
+            env_prod: {
+                watch: false,
+                NODE_ENV: 'prod',
             },
         },
         {
@@ -29,6 +37,10 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
+            env_prod: {
+                watch: false,
+                NODE_ENV: 'prod',
+            },
         },
         {
             name: 'connectors',
@@ -39,6 +51,10 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
+            env_prod: {
+                watch: false,
+                NODE_ENV: 'prod',
+            },
         },
         {
             name: 'db',
@@ -48,6 +64,10 @@ module.exports = {
             env: {
                 watch: true,
                 NODE_ENV: 'local',
+            },
+            env_prod: {
+                watch: false,
+                NODE_ENV: 'prod',
             },
         },
     ],

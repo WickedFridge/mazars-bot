@@ -36,8 +36,7 @@ fi
 while true; do
     read -p "Which env do you want to start (local/prod) ? " MODE
     case $MODE in
-        local* ) pm2 start $PM2CONF_FILE; break;;
-        prod* ) pm2 start $PM2CONF_FILE_PROD; break;;
+        local|prod* ) pm2 start $PM2CONF_FILE --env MODE; break;;
         * ) echo "Please answer local or prod.";;
     esac
 done
