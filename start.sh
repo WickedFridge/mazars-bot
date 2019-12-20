@@ -2,7 +2,6 @@
 
 PROJECT_NAME="mazars-bot"
 PM2CONF_FILE="pm2.ecosystem.config.js"
-PM2CONF_FILE_PROD="pm2.ecosystem.config.prod.js"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -34,10 +33,10 @@ if [[ $? -eq 0 ]]; then
 fi
 
 while true; do
-    read -p "Which env do you want to start (local/prod) ? " MODE
+    read -p "Which env do you want to start (local/production) ? " MODE
     case $MODE in
-        local|prod* ) pm2 start $PM2CONF_FILE --env MODE; break;;
-        * ) echo "Please answer local or prod.";;
+        local|prod* ) pm2 start $PM2CONF_FILE --env $MODE; break;;
+        * ) echo "Please answer local or production.";;
     esac
 done
 

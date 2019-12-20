@@ -9,9 +9,9 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
-            env_prod: {
+            env_production: {
                 watch: false,
-                NODE_ENV: 'prod',
+                NODE_ENV: 'production',
             },
         },
         {
@@ -23,9 +23,9 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
-            env_prod: {
+            env_production: {
                 watch: false,
-                NODE_ENV: 'prod',
+                NODE_ENV: 'production',
             },
         },
         {
@@ -37,9 +37,9 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
-            env_prod: {
+            env_production: {
                 watch: false,
-                NODE_ENV: 'prod',
+                NODE_ENV: 'production',
             },
         },
         {
@@ -51,9 +51,9 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
-            env_prod: {
+            env_production: {
                 watch: false,
-                NODE_ENV: 'prod',
+                NODE_ENV: 'production',
             },
         },
         {
@@ -65,9 +65,9 @@ module.exports = {
                 watch: true,
                 NODE_ENV: 'local',
             },
-            env_prod: {
+            env_production: {
                 watch: false,
-                NODE_ENV: 'prod',
+                NODE_ENV: 'production',
             },
         },
     ],
