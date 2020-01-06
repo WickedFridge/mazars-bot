@@ -28,6 +28,7 @@ module.exports = {
                         required: [`inputIntent`],
                     },
                 },
+                required: ['locale']
             },
         },
         lmsResponse: {
