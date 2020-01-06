@@ -33,6 +33,15 @@ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
 sudo apt-get install nodejs
 sudo chown -R $USER /usr/lib/node_modules
 ```
+* setup the database
+install mysql
+    * install mysql
+    * follow the steps at : https://tecadmin.net/install-mysql-server-on-debian9-stretch/
+```
+cd /database
+NODE_ENV=<local/production> npm create-schema
+```
+    
 ## Setting up Local Environment
 
 #### First things first

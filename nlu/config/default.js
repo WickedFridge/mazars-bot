@@ -3,7 +3,7 @@ module.exports = {
     endpoints: {
         nlu: '/nlu',
     },
-    port: 8081,
+    port: 8003,
     validateInput: true,
     skipsOnError: true,
 };

@@ -19,6 +19,7 @@ function initLogger(config) {
     const { name, slack, logger, aws } = config;
 
     _loggerConfig = {
+        env: process.env.NODE_ENV,
         name,
         slack,
         logger,

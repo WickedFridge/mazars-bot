@@ -3,7 +3,7 @@ module.exports = {
     endpoints: {
         lms: '/lms',
     },
-    port: 8080,
+    port: 8004,
     validateInput: true,
     firebase: {
         apiKey: 'AIzaSyChQkS6xJwii102Xv_vWrAeN4Ixtv99ycA',
