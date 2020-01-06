@@ -12,6 +12,9 @@ module.exports = {
         nlu: {
             baseURL: 'http://localhost:8081',
         },
+        database: {
+            baseURL: 'http://localhost:8083',
+        },
     },
     skipsOnError: false,
 };

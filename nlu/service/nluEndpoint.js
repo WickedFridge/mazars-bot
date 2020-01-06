@@ -10,6 +10,14 @@ initLogger(config);
 
 const logger = customLogger('nlu');
 
+function getResponse(text) {
+    if (!text) { return null; }
+    return {
+        type: 'text',
+        text,
+    };
+}
+
 async function nluService(req, res) {
     const message = req.body;
     const sessionId = message.messageId;
@@ -38,9 +46,9 @@ async function nluService(req, res) {
     const responses = await sessionClient.detectIntent(request);
     logger.info('output');
     const result = responses[0].queryResult;
-    const response = result.fulfillmentText;
     const intent = result.intent.displayName;
     const entities = simplifyEntities(result.parameters);
+    const response = getResponse(result.fulfillmentText);
     message.nlu = {
         originalIntent: intent,
         intent,

@@ -46,9 +46,15 @@ module.exports = {
                 originalIntent: { type: `string` },
                 intent: { type: `string` },
                 entities: { type: 'object' },
-                response: { type: 'string' },
+                response: {
+                    anyOf: [
+                        { $ref: `#/definitions/lmsResponse` },
+                        { type: 'null' },
+                    ]
+                },
                 fallback: { type: `boolean` },
             },
+            required: ['intent', 'entities'],
         },
         user: {
             type: `object`,

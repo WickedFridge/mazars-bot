@@ -5,14 +5,44 @@ It contains 4 parts:
    - NLU -- *converts text to a mix of intents & entities. Here it's a basic model (mock)*
    - LMS -- *dictionary of the bot. Makes a correspondance from intent & entities to output text*
 
-## Setup
+
+## Setting up the Server
+* Connect to the server
+```
+ssh voicebot@10.240.6.73
+password : 9a7s%x4FS<
+```
+* now you're connected, install sudo via superuser using the same password
+```
+$ cd ~/
+$ su
+# apt install sudo
+# usermod -aG sudo voicebot
+# su - voicebot
+```
+* install git
+```
+sudo apt install git
+git clone <repo-url>
+cd mazars-bot/
+```
+* install nodejs
+```
+sudo apt-get install curl software-properties-common
+curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+sudo apt-get install nodejs
+sudo chown -R $USER /usr/lib/node_modules
+```
+## Make it work
 
 #### First things first
 
 * https://portal.azure.com/#create/hub
 * Web App bot
 * create
-* change the webhook
+* change the webhook in "Settings"
+* Go to Configuration and hit "show values"
+    * your Microsoft App ID & Password are here
 
 You just type the following command in the active directory.
 ```
@@ -29,6 +59,7 @@ bash start.sh
 *   ```
     pm2 delete all
     ```
+
 
 ## Usage
 ### Talking to the bot

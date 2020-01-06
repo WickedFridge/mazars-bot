@@ -1,18 +1,18 @@
 {
-  "name": "mazars-lms",
+  "name": "mazars-database",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "jest --testPathPattern='unit.test.js'"
+    "create-schema": "node scripts/executeSQL.js scripts/schema.sql",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "config": "^3.2.4",
-    "firebase": "^7.5.2",
-    "uuid": "^3.3.3"
+    "mysql": "^2.17.1",
+    "squel": "^5.13.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -21,10 +21,6 @@
     "eslint-plugin-jest": "^21.18.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "jest": "^24.7.1",
-    "jest-html-reporter": "^2.4.2",
-    "jest-junit": "^6.3.0",
-    "jest-sonar-reporter": "^2.0.0",
-    "supertest": "^4.0.2"
+    "jest": "^22.4.3"
   }
 }

@@ -28,8 +28,7 @@ adapter.onTurnError = async (context, error) => {
     );
 
     // Send a message to the user
-    await context.sendActivity('The bot encounted an error or bug.');
-    await context.sendActivity('To continue to run this bot, please fix the bot source code.');
+    await context.sendActivity('Erreur interne (Botcore)');
 };
 
 // Create the main dialog.

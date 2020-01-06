@@ -7,6 +7,7 @@ function createServer(config, services) {
     initLogger(config);
     const logger = customLogger(config.name);
 
+    logger.info(config);
     const app = express();
     app.use(bodyParser.json({ limit: '50mb' }));
 
@@ -43,7 +44,7 @@ function createServer(config, services) {
             } catch (e) {
                 logger.error('error catched');
                 logger.error(e);
-                errorHandler(res, res, e);
+                errorHandler(req, res, e);
             }
         });
     });

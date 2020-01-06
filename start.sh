@@ -10,7 +10,7 @@ DIRECTORIES=(botcore lms nlu connectors common)
 
 # install pm2 if not already installed
 if [[ `npm list -g | grep -c pm2` -eq 0 ]]; then
-    npm install -g pm2
+    sudo npm install -g pm2
 else
     pm2 delete all
 fi
@@ -32,8 +32,13 @@ if [[ $? -eq 0 ]]; then
   pm2 delete $PROJECT_NAME
 fi
 
-MODE="LOCAL"
-pm2 start $PM2CONF_FILE
+while true; do
+    read -p "Which env do you want to start (local/production) ? " MODE
+    case $MODE in
+        local|prod* ) pm2 start $PM2CONF_FILE --env $MODE; break;;
+        * ) echo "Please answer local or production.";;
+    esac
+done
 
 printf "\n"
 echo -e "${GREEN}Starting the application in $MODE mode ${NC}"

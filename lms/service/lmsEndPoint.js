@@ -64,15 +64,23 @@ function getOutputText(intent, entities) {
 async function lmsService(req, res) {
     await initLms();
     const message = req.body;
-    const { nlu } = message;
     if (message.isError) {
-        nlu.intent = 'CORE_ERROR';
+        if (message.nlu) {
+            message.nlu.intent = 'CORE_ERROR';
+        } else {
+            message.nlu = {
+                intent: 'CORE_ERROR',
+                originalIntent: 'UNKONWN',
+                entities: {},
+            };
+        }
     }
-    const { intent, entities, response } = nlu;
+    const { intent, entities, response } = message.nlu;
     logger.info(`intent: ${intent}`);
     message.lmsResponse = response || getOutputText(intent, entities);
-    logger.info(`output: ${message.lmsResponse}`);
-    res.json(message);
+    logger.info('output:');
+    logger.info(message.lmsResponse);
+    await res.json(message);
 }
 
 module.exports = {
