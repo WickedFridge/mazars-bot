@@ -37,6 +37,12 @@ sudo chown -R $USER /usr/lib/node_modules
 install mysql
     * install mysql
     * follow the steps at : https://tecadmin.net/install-mysql-server-on-debian9-stretch/
+    * create the database
+```
+mysql -uroot -p
+mysql > create database bot;
+mysql > exit
+```
 ```
 cd /database
 NODE_ENV=<local/production> npm create-schema
