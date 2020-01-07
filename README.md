@@ -4,7 +4,7 @@ It contains 4 parts:
    - Botcore -- *mainly does the routing for the bot. Usually handles the user & conversation database*
    - NLU -- *converts text to a mix of intents & entities. Here it's a basic model (mock)*
    - LMS -- *dictionary of the bot. Makes a correspondance from intent & entities to output text*
-
+   - DATABASE -- *stocks conversations*
 
 ## Setting up the Server
 * Connect to the server
@@ -33,16 +33,42 @@ curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
 sudo apt-get install nodejs
 sudo chown -R $USER /usr/lib/node_modules
 ```
-## Make it work
+* setup the database
+install mysql
+    * install mysql
+    * follow the steps at : https://tecadmin.net/install-mysql-server-on-debian9-stretch/
+    * create the database
+```
+mysql -uroot -p
+mysql > create database bot;
+mysql > exit
+```
+```
+cd /database
+NODE_ENV=<local/production> npm run create-schema
+```
+    
+## Setting up Local Environment
 
 #### First things first
 
+* download ngrok then start it
+    * `./ngrok http 80`
+    * You should have the following :
+        * `Forwarding https://<NGROK-ENDPOINT>.ngrok.io -> http://localhost:80`
 * https://portal.azure.com/#create/hub
 * Web App bot
 * create
 * change the webhook in "Settings"
+    * `https://<NGROK-ENDPOINT>.ngrok.io/microsoft-bot-platform`
 * Go to Configuration and hit "show values"
     * your Microsoft App ID & Password are here
+* Go to Teams and use the App Studio (Apps => App Studio)
+    * manifest editor
+    * create a new app
+    * fill the form
+    * endpoint address is either ngrok (local) or `chatbot-normes-mazars.fr` (prod)
+    * in the "finish" tab, click "install"
 
 You just type the following command in the active directory.
 ```
@@ -68,13 +94,31 @@ You have to use HTTP request to do so. Postman will do, but you can also use cur
 #### *[POST]* localhost:8082/botcore
 ```
 {
-	"text": "I would like a vanilla Ice Cream"
+	"messageId": "test",
+	"conversation": {
+		"locale": "fr-FR"
+	},
+	"inputText": "hello"
 }
 ```
 ```
 curl -X POST \
   http://localhost:8082/botcore \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -H 'Postman-Token: 3d16b316-5fe3-4e7c-9d61-c7a0cb40d845' \
-  -H 'cache-control: no-cache'
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 90' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:8082' \
+  -H 'Postman-Token: 687ac413-d999-4c6f-9aa8-f5c73310cab8,dd13c890-4091-4429-8ba6-71bbcf20f38b' \
+  -H 'User-Agent: PostmanRuntime/7.20.1' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"messageId": "test",
+	"conversation": {
+		"locale": "fr-FR"
+	},
+	"inputText": "hello"
+}'
 ```

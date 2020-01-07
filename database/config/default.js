@@ -3,7 +3,7 @@ module.exports = {
     endpoints: {
         saveMessage: '/saveMessage',
     },
-    port: 8083,
+    port: 8005,
     validateInput: true,
     skipsOnError: true,
     database: {
@@ -14,4 +14,4 @@ module.exports = {
         multipleStatements: true,
         charset: `utf8mb4_general_ci`,
     },
-}
+};

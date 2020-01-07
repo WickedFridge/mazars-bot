@@ -6,7 +6,7 @@ module.exports = {
     port: 80,
     apiClients: {
         botcore: {
-            baseURL: 'http://localhost:8082',
+            baseURL: 'http://localhost:8002',
         },
     },
     microsoftApp: {

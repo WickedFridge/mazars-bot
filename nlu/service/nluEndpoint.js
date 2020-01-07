@@ -2,13 +2,17 @@ const config = require('config');
 const dialogflow = require('dialogflow');
 const { customLogger, initLogger } = require('../../common/logger');
 const { simplifyEntities } = require('./dialogflowEntitiesSimplificator');
-const credentials = require('./dialogflow-key-dev-cw');
-
-const projectId = credentials.project_id;
 
 initLogger(config);
 
 const logger = customLogger('nlu');
+
+if (!config.dialogflowKeyPath) {
+    logger.error('Dialogflow Key not specified ! Check the NLU Readme for more info');
+}
+// eslint-disable-next-line import/no-dynamic-require
+const credentials = require(config.dialogflowKeyPath);
+const projectId = credentials.project_id;
 
 function getResponse(text) {
     if (!text) { return null; }

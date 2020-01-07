@@ -3,17 +3,17 @@ module.exports = {
     endpoints: {
         botcore: '/botcore',
     },
-    port: 8082,
+    port: 8002,
     validateInput: true,
     apiClients: {
-        lms: {
-            baseURL: 'http://localhost:8080',
-        },
         nlu: {
-            baseURL: 'http://localhost:8081',
+            baseURL: 'http://localhost:8003',
+        },
+        lms: {
+            baseURL: 'http://localhost:8004',
         },
         database: {
-            baseURL: 'http://localhost:8083',
+            baseURL: 'http://localhost:8005',
         },
     },
     skipsOnError: false,

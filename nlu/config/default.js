@@ -3,7 +3,8 @@ module.exports = {
     endpoints: {
         nlu: '/nlu',
     },
-    port: 8081,
+    port: 8003,
+    dialogflowKeyPath: './dialogflow-key-dev-cw',
     validateInput: true,
     skipsOnError: true,
 };
