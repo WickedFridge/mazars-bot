@@ -45,7 +45,7 @@ mysql > exit
 ```
 ```
 cd /database
-NODE_ENV=<local/production> npm create-schema
+NODE_ENV=<local/production> npm run create-schema
 ```
     
 ## Setting up Local Environment

@@ -58,7 +58,7 @@ module.exports = {
                 multipleStatements: { type: 'boolean' },
                 charset: { type: 'string' },
             }
-        }
+        },
     },
 
     properties: {
@@ -70,7 +70,8 @@ module.exports = {
         skipsOnError: { type: 'boolean' },
         firebase: { $ref: '#/definitions/firebase'},
         microsoftApp: { $ref: '#/definitions/microsoftApp' },
-        database: { $ref: '#/definitions/database' }
+        database: { $ref: '#/definitions/database' },
+        dialogflowKeyPath: { type: 'string' },
     },
 
     required : [
