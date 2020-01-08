@@ -1,10 +1,14 @@
 module.exports = {
     name: 'botcore',
     endpoints: {
-        botcore: '/botcore',
+        botcore: {
+            path: '/botcore',
+            method: 'post',
+            validateInput: true,
+            skipsOnError: false,
+        },
     },
     port: 8002,
-    validateInput: true,
     apiClients: {
         nlu: {
             baseURL: 'http://localhost:8003',
@@ -16,5 +20,4 @@ module.exports = {
             baseURL: 'http://localhost:8005',
         },
     },
-    skipsOnError: false,
 };

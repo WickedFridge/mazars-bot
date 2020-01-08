@@ -4,7 +4,7 @@ const { botcoreService } = require('./service/botcoreEndpoint');
 const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.botcore]: {
+    botcore: {
         callback: botcoreService,
         errorHandler: defaultErrorHandler,
     },

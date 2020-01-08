@@ -35,8 +35,11 @@ module.exports = {
             type: `object`,
             additionalProperties: false,
             properties: {
-                type: { const: `text` },
-                text: { type: `string` },
+                type: {
+                    type: 'string',
+                    enum: ['text', 'quickReplies', 'image']
+                },
+                text: { type: 'string' },
             },
             required: [`type`, `text`],
         },

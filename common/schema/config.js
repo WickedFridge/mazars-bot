@@ -10,7 +10,17 @@ module.exports = {
             type: 'object',
             additionalProperties: false,
             patternProperties: {
-                "^.*$": { type: 'string' },
+                "^.*$": {
+                    type: 'object',
+                    additionalProperties: false,
+                    properties: {
+                        path: { type: 'string' },
+                        method: { type: 'string' },
+                        validateInput: { type: 'boolean' },
+                        skipsOnError: { type: 'boolean' },
+                    },
+                    required: ['path', 'method', 'validateInput', 'skipsOnError']
+                },
             },
         },
         apiClients: {
@@ -78,7 +88,5 @@ module.exports = {
         'name',
         'endpoints',
         'port',
-        'validateInput',
-        'skipsOnError'
     ],
 };

@@ -4,7 +4,7 @@ const { lmsService } = require('./service/lmsEndPoint');
 const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.lms]: {
+    lms: {
         callback: lmsService,
         errorHandler: defaultErrorHandler,
     },
