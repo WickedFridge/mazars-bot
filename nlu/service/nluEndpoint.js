@@ -24,6 +24,11 @@ function getResponse(text) {
 
 async function nluService(req, res) {
     const message = req.body;
+    if (message.nlu) {
+        logger.info('nlu already set ! (quickReply)');
+        logger.info('skipping the nlu');
+        return res.json(message);
+    }
     const sessionId = message.messageId;
 
     const sessionConfig = {
@@ -60,7 +65,7 @@ async function nluService(req, res) {
         response,
     };
     logger.info(message.nlu);
-    res.json(message);
+    return res.json(message);
 }
 
 module.exports = {
