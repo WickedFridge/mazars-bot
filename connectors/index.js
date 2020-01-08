@@ -4,7 +4,7 @@ const { connectorMicrosoft } = require('./microsoft-bot-platform');
 const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
 
 const services = {
-    [config.endpoints.microsoft]: {
+    microsoft: {
         callback: connectorMicrosoft,
         errorHandler: defaultErrorHandler,
     },

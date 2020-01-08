@@ -3,6 +3,14 @@ const express = require('express');
 const { customLogger, initLogger } = require('../logger');
 const { validate } = require('../tools/validator');
 
+function findMissingEndpoint(endpoints, services) {
+    return Object.keys(endpoints).find(endpoint => !services[endpoint]);
+}
+
+function findMissingService(endpoints, services) {
+    return Object.keys(services).find(service => !endpoints[service]);
+}
+
 function createServer(config, services) {
     initLogger(config);
     const logger = customLogger(config.name);
@@ -11,30 +19,48 @@ function createServer(config, services) {
     const app = express();
     app.use(bodyParser.json({ limit: '50mb' }));
 
+    logger.info('coucou');
+
     // config is a complex object and we just want the keys and values
     if (!validate(JSON.parse(JSON.stringify(config)), 'config')) {
         logger.error(`Can't validate your component's config ! Change it to match the schema or change the schema at common/schema/config`);
         return app;
     }
 
-    Object.entries(services).forEach(([endpoint, { callback, errorHandler }]) => {
+    const missingEndpoint = findMissingEndpoint(config.endpoints, services);
+    if (missingEndpoint) {
+        logger.error(`Endpoint ${missingEndpoint} doesn't have a service associated`);
+        return app;
+    }
+
+    const missingService = findMissingService(config.endpoints, services);
+    if (missingService) {
+        logger.error(`Service ${missingService} isn't associated to an endpoint`);
+        return app;
+    }
+
+    Object.entries(services).forEach(([service, { callback, errorHandler }]) => {
+        const { path, method, validateInput, skipsOnError } = config.endpoints[service];
+        logger.info(`setting up endpoint ${service} at path ${path}`);
+
         if (!errorHandler) {
-            logger.error(`On error callback is not defined for the endpoint ${endpoint} ! Please set it up in your index.js file`);
+            logger.error(`On error callback is not defined for the endpoint ${path} ! Please set it up in your index.js file`);
         }
 
-        app.post(endpoint, async (req, res) => {
+        app[method](path, async (req, res) => {
             const message = req.body;
-            logger.debug(`[${config.name}] ${endpoint} called with parameters`);
+            logger.debug(`[${config.name}] endpoint ${service} (${path}) called with parameters`);
             logger.debug(message);
 
-            if (message.isError && config.skipsOnError) {
-                logger.error(`message is skipped because ${config.name} skips on error`);
+            if (message.isError && skipsOnError) {
+                logger.error(`message is skipped because ${service} skips on error`);
                 res.json(message);
                 return;
             }
 
-            if (config.validateInput && !validate(message, 'message')) {
+            if (validateInput && !validate(message, 'message')) {
                 logger.error(`Message doesn't comply with schema`);
+                logger.error(`Please check your code or update the schema in /common/schema/message`);
                 message.isError = true;
                 res.json(message);
                 return;
