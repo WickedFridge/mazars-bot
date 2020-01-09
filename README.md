@@ -87,42 +87,6 @@ bash start.sh
     ```
 
 
-## Usage
-### Talking to the bot
-You have to use HTTP request to do so. Postman will do, but you can also use curl.
-
-#### *[POST]* localhost:8082/botcore
-```
-{
-	"messageId": "test",
-	"conversation": {
-		"locale": "fr-FR"
-	},
-	"inputText": "hello"
-}
-```
-```
-curl -X POST \
-  http://localhost:8082/botcore \
-  -H 'Accept: */*' \
-  -H 'Accept-Encoding: gzip, deflate' \
-  -H 'Cache-Control: no-cache' \
-  -H 'Connection: keep-alive' \
-  -H 'Content-Length: 90' \
-  -H 'Content-Type: application/json' \
-  -H 'Host: localhost:8082' \
-  -H 'Postman-Token: 687ac413-d999-4c6f-9aa8-f5c73310cab8,dd13c890-4091-4429-8ba6-71bbcf20f38b' \
-  -H 'User-Agent: PostmanRuntime/7.20.1' \
-  -H 'cache-control: no-cache' \
-  -d '{
-	"messageId": "test",
-	"conversation": {
-		"locale": "fr-FR"
-	},
-	"inputText": "hello"
-}'
-```
-
 ## Adding a module
 
 ### Configuration
@@ -168,3 +132,45 @@ curl -X POST \
 * don't forget to call your module in the botcore or in the router
 * edit start.sh and pm2.ecosystem.config.js to include your directory
 * you will most likely have to edit the message schema to make your module work
+
+
+## Usage
+### Talking to the bot
+The entry point of the bot is made by the connectors. They create a message (following the fixed schema)
+that is then passed to the botcore. To test your bot, you can either connect it
+(to teams via microsoft bot platform, for example), or send an HTTP request.
+
+#### *[POST]* localhost:8082/botcore
+```
+{
+	"messageId": "test",
+	"conversation": {
+		"locale": "fr-FR"
+	},
+	"inputText": "hello"
+}
+```
+```
+curl -X POST \
+  http://localhost:8082/botcore \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 90' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:8082' \
+  -H 'Postman-Token: 687ac413-d999-4c6f-9aa8-f5c73310cab8,dd13c890-4091-4429-8ba6-71bbcf20f38b' \
+  -H 'User-Agent: PostmanRuntime/7.20.1' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"messageId": "test",
+	"conversation": {
+		"locale": "fr-FR"
+	},
+	"inputText": "hello"
+}'
+```
+
+### Database export
+a simple GET on `http://localhost/api/database/messages` should do the trick.
