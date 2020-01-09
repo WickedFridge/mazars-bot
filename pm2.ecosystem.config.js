@@ -43,8 +43,8 @@ module.exports = {
             },
         },
         {
-            name: 'connectors',
-            cwd: 'connectors',
+            name: 'router',
+            cwd: 'router',
             script: 'index.js',
             NODE_TLS_REJECT_UNAUTHORIZED: '0',
             env: {

@@ -40,6 +40,18 @@ module.exports = {
                     enum: ['text', 'quickReplies', 'image']
                 },
                 text: { type: 'string' },
+                replies: {
+                    type: 'array',
+                    contains: {
+                        type: 'object',
+                        additionalProperties: false,
+                        properties: {
+                            text: { type: 'string' },
+                            value: { type: 'string' },
+                        },
+                        required: ['text', 'value'],
+                    },
+                },
             },
             required: [`type`, `text`],
         },

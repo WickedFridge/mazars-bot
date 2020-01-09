@@ -6,7 +6,7 @@ PM2CONF_FILE="pm2.ecosystem.config.js"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
-DIRECTORIES=(botcore lms nlu connectors common)
+DIRECTORIES=(botcore lms nlu router database common)
 
 # install pm2 if not already installed
 if [[ `npm list -g | grep -c pm2` -eq 0 ]]; then

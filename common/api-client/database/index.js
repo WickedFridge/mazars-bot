@@ -21,6 +21,14 @@ class DatabaseApiClient extends AbstractApiClient {
             timeTrackerLabel: `saveMessage`,
         });
     }
+
+    getMessages() {
+        return this._timeTrackedAxiosCall({
+            method: 'get',
+            url: '/getMessages',
+            timeTrackerLabel: 'getMessages',
+        });
+    }
 }
 
 module.exports = DatabaseApiClient;
