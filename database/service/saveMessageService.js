@@ -5,6 +5,7 @@ async function saveMessage(req, res) {
     const message = req.body;
     const values = {
         id: message.messageId,
+        userid: message.user.externalId,
         date: message.beginTime,
         firstname: message.user.firstname,
         lastname: message.user.lastname,

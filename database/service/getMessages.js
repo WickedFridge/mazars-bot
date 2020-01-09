@@ -10,16 +10,26 @@ const logger = customLogger('getMessages');
 async function getMessages(req, res) {
     const query = squel.select({ replaceSingleQuotes: true })
         .from('message')
+        .field('userid')
         .field('firstname')
         .field('lastname')
         .field('input')
         .field('output')
         .field('date')
-        .order('date', false)
+        .order('userid', false)
+        .order('date')
         .toString();
     const result = await database.asyncQuery(query);
-    logger.info(result);
-    await res.json(result);
+    const temp = {};
+    result.forEach(({ userid, ...data }) => {
+        if (!temp[userid]) {
+            temp[userid] = [];
+        }
+        temp[userid].push(data);
+    });
+    const output = Object.values(temp);
+    logger.info(output);
+    await res.json(output);
 }
 
 module.exports = {
