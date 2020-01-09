@@ -19,8 +19,6 @@ function createServer(config, services) {
     const app = express();
     app.use(bodyParser.json({ limit: '50mb' }));
 
-    logger.info('coucou');
-
     // config is a complex object and we just want the keys and values
     if (!validate(JSON.parse(JSON.stringify(config)), 'config')) {
         logger.error(`Can't validate your component's config ! Change it to match the schema or change the schema at common/schema/config`);

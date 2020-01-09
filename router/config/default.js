@@ -1,17 +1,26 @@
 module.exports = {
-    name: 'connectors',
+    name: 'router',
     endpoints: {
         microsoft: {
-            path: '/microsoft-bot-platform',
+            path: '/api/messages/microsoft-bot-platform',
             method: 'post',
             validateInput: false,
             skipsOnError: false,
+        },
+        getMessages: {
+            path: '/api/database/messages',
+            method: 'get',
+            validateInput: false,
+            skipsOnError: true,
         },
     },
     port: 80,
     apiClients: {
         botcore: {
             baseURL: 'http://localhost:8002',
+        },
+        database: {
+            baseURL: 'http://localhost:8005',
         },
     },
     microsoftApp: {
