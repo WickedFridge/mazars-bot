@@ -122,3 +122,49 @@ curl -X POST \
 	"inputText": "hello"
 }'
 ```
+
+## Adding a module
+
+### Configuration
+
+* create a directory at the same level as common
+* you will need some files to make it work :
+    - index.js
+    ```javascript
+    const config = require('config');
+    const { createServer } = require('../common/components/serverFactory');
+    const { <service> } = require('./service/<service>');
+    const { defaultErrorHandler } = require('../common/components/defaultErrorHandler');
+    
+    const services = {
+        <service>: {
+            callback: <service>,
+            errorHandler: defaultErrorHandler,
+        },
+    };
+    
+    module.exports = createServer(config, services);
+    ```
+    Your service function will have to take `(req, res)` as input, and finish with `res.json({ ... })`
+    - package.json
+    - config/default.js
+    ```javascript
+    module.exports = {
+        name: '<service>',
+        endpoints: {
+            lms: {
+                path: '/<endpoint>',
+                method: '<post/get/put>',
+                validateInput: <boolean>,
+                skipsOnError: <boolean>,
+            },
+        },
+        port: 80XX,
+    }
+    ```
+* create an api-client so that your module can be called
+    - common/api-client/xxxx (you can check the other models.
+    Always use the factory when building your api-client for mock/test purpose)
+* don't forget to call your module in the botcore or in the router
+* edit start.sh and pm2.ecosystem.config.js to include your directory
+* you will most likely have to edit the message schema to make your module work
